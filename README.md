@@ -1,8 +1,6 @@
 # This repository is under construction and currently up for testing. More content will follow soon
 
 
-
-
 # Haptic Blocks Wearable
 
 This project is intended to provide the public with the means to quickly and easily implement their own solutions to providing haptic (tactile to be precise) feedback for their own projects. Wether you want to immerse users in a great game or simply do research on haptics, HBW might be your solution. 
@@ -103,7 +101,55 @@ vibrate("[1,2,3]", 255)
 ```
 You may use time.sleep to space the commands in order to create patterns. 
 
+#### C#
+```
+	using System.Net.Http;
+	using System.Threading.Tasks;
+	
+	//define the URL of your wearable here 
+	String url ="x.x.x.x"; 
+	
+    async public void SendMessage(string url)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                // Specify the URI of the resource to retrieve
+                string uri = url;
+          
 
+                //set timeout
+                client.Timeout = TimeSpan.FromMilliseconds(500);
+                // Asynchronously sends a GET request to the specified URI
+                HttpResponseMessage response = await client.GetAsync(uri);
+
+                // Ensure we receive a successful response.
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content as a string asynchronously
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Write the response body to the console
+               
+            }
+            catch (HttpRequestException e)
+            {
+                //print and handle errors relating to failed requests here 
+            }
+            catch (TaskCanceledException e)
+            {
+               // this code is called when the request times out
+            }
+        }
+    }
+    
+    //call this message to cause vibration
+    public void vibration(String motorNum, int intensity)
+    {
+    SendMessage(url + "vibration?motorNum=" + motorNum + "&intensity=" + intensity);
+    }
+```
 
 
 
