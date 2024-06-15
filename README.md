@@ -1,3 +1,8 @@
+# This repository is under construction and currently up for testing. More content will follow soon
+
+
+
+
 # Haptic Blocks Wearable
 
 This project is intended to provide the public with the means to quickly and easily implement their own solutions to providing haptic (tactile to be precise) feedback for their own projects. Wether you want to immerse users in a great game or simply do research on haptics, HBW might be your solution. 
